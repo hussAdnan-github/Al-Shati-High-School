@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./main.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container" style="text-align: center;">
+        <div class="box">
+            <img src="./IMG-20231231-WA0006.jpg" alt="" width="250px">
+        </div>
+        <form action="">
+            <div>
+            </div>
+            <div>
+                <p>اليــوم</p>
+                <input type="number" name="date" id="date" placeholder="dd" minlength="1" maxlength="2" required>
+            </div>
+            <div>
+                <p>الشـهـر</p>
+                <input type="number" name="Month" id="month" placeholder="mm" minlength="1" maxlength="2" required>
+            </div>
+            <div>
+                <p>الســـنة</p>
+                <input type="number" name="Year" id="year" placeholder="yyyy" minlength="4" maxlength="4" required>
+            </div>
+            <div>
+            </div>
+        </form>
+        <input class="btn" type="button" name="submit" value="عـــرض" onclick="age()">
+        <div class="box2">
+            <div class="age" id="age"></div>
+            
+        </div>
+    </div>
+
+    <script type="text/javascript">
+
+        function age(){
+            let dayIn = document.getElementById('date').value;
+            let monthIn = document.getElementById('month').value;
+            let yearIn = document.getElementById('year').value;
+            if(dayIn <= 0 || monthIn <= 0  || yearIn <= 0 || dayIn > 31 || monthIn > 12  ){
+            alert("Error")
+          }
+          else{
+
+         
+            let mainDate = new Date();  // New date in js Mehtod
+
+
+            //  get from your Device
+
+            let day = mainDate.getDate();
+            let month = 1 + mainDate.getMonth();
+            let year =  mainDate.getFullYear();
+            console.log(month)
+            const months = [31 , 28 ,31, 30 ,31 ,30 ,31 ,31, 30,31,30,31] ;
+
+            if (dayIn > day ){
+                day = day + months[month - 1]
+                month = month - 1
+            }
+            if ( monthIn > month ){
+                month = month + 12 ;
+                year = year - 1
+            }
+
+            let finalDay = day  - dayIn 
+            let finalMonth = month  - monthIn
+            let finalYear = year  - yearIn
+            
+            document.getElementById('age').innerHTML = `The Year is <span>${finalYear}</span> The Month is <span>${finalMonth}</span> This Day is <span>${finalDay }</span>`
+        }
+        }
+    </script>
+</body>
+</html>
